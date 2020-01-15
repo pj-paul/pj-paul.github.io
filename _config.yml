@@ -1,7 +1,7 @@
 title: PJ Paul
 url: "https://pj-paul.github.io"
-author: GitHub User
-email: your-email@domain.com
+author: Paul
+email: 
 description: > # this means to ignore newlines until "show_excerpts:"
   Personal blog with posts about development economics, startups, and literature.
 
@@ -37,6 +37,10 @@ minima:
     #   instance: example.com
     # - username: jekyll2
     #   instance: example.com
+
+# Enable Disqus
+  disqus:
+    shortname: "https-pj-paul-github-io"
 
 # If you want to link only specific pages in your header, uncomment
 # this and add the path to the pages in order as they should show up
