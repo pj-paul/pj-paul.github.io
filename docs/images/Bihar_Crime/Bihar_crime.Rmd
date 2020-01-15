@@ -1,0 +1,229 @@
+---
+title: "BiharCrime"
+author: "pjpaul"
+date: "1/14/2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Settings and Data
+```{r}
+library(dplyr)
+library(tidyr)
+library(reshape2)
+library(lubridate)
+library(directlabels)
+library(ggplot2)
+library(ggthemes)
+```
+
+  The data was collected from the website of the [Bihar Police department] (http://biharpolice.bih.nic.in/menuhome/crime-in-bihar.html)
+
+```{r}
+# Loading the data
+bihar_crime <- read.csv("BiharCrime- 2010-16.csv", stringsAsFactors = F)
+colnames(bihar_crime) <- tolower(colnames(bihar_crime))
+colnames(bihar_crime)[1] <- "crime_type"
+# Reshaping the data
+bihar_crime$crime_year <- paste(bihar_crime$crime_type,bihar_crime$year,sep = "*")
+```
+```{r}
+bihar_crime_long <- reshape(bihar_crime,varying = c("jan","feb","mar","apr","may","june","july","aug","sep","oct","nov","dec","total"),timevar = "crime_year",ids = c("jan","feb","mar","apr","may","june","july","aug","sep","oct","nov","dec","total","year"),direction = "wide")
+```
+```{r}
+bihar_crime_wide <- reshape(bihar_crime,
+                            timevar = "year",
+                            idvar = "crime_type",
+                            direction = "wide",
+                            drop = c("crime_year","total"))
+```
+```{r}
+bihar_crime_long <- melt(bihar_crime_wide,id.vars = "crime_type")
+bihar_crime_long$variable <- as.character(bihar_crime_long$variable)
+bihar_crime_long$period <- mdy(bihar_crime_long$variable)   
+
+```
+
+
+```{r}
+bihar_crime_long %>% filter(!is.na(value) & crime_type != "Cognizable") %>%  group_by(crime_type,year = year(period)) %>% summarise(mean=mean(value)) -> annual_averages
+
+bihar_crime_long$year <- year(bihar_crime_long$period)
+bihar_crime_long$month <- month(bihar_crime_long$period, label = T)
+bihar_crime_long$crime_type <- factor(bihar_crime_long$crime_type,
+                                        levels=c("Theft","Riots","Kidnapping",
+                                                 "Burglary", "Murder", "Robbery","Road Robbery",
+                                                 "Rape","Dacoity","Road Dacoity",
+                                                 "Kid. for Ransom","Bank Dacoity","Bank Robbery"))
+
+annual_averages %>% filter(year == 2015) %>% arrange(crime_type,desc(mean))
+annual_averages$crime_type <- factor(annual_averages$crime_type,
+                                        levels=c("Theft","Riots","Kidnapping",
+                                                 "Burglary", "Murder", "Robbery","Road Robbery",
+                                                 "Rape","Dacoity","Road Dacoity",
+                                                 "Kid. for Ransom","Bank Dacoity","Bank Robbery"))
+
+```
+```{r}
+bihar_crime_long %>% filter(!is.na(value)) %>% filter(crime_type != "Cognizable") %>% filter(year >= 2013) %>% 
+  ggplot(aes(x=period,y=value,colour=crime_type)) + geom_line() +
+  labs(x="Year",y="Number of crimes")+ theme_minimal() + 
+  ggtitle("Crimes per month over the years, by type") +
+  labs(x="Month of the year",y="Number of crimes") + theme_igray() + scale_colour_tableau() + scale_color_discrete(name= "Crime Type")
+
+ggsave("Crimes_over_years_line.png", width=4, height=4, dpi=400)
+```
+
+```{r}
+bihar_crime_long %>% filter(!is.na(value)) %>% filter(crime_type != "Cognizable") %>% filter(year >= 2013) %>% 
+  ggplot(aes(x=period,y=value,colour=crime_type)) + geom_smooth(aes(group = crime_type),se=FALSE,position=position_dodge(width=0.2),size=0.6) +
+  labs(x="Year",y="Number of crimes")+theme_igray() + scale_colour_tableau() +
+  ggtitle("Average crime per month over the years, by type") +
+  labs(x="Month of the year",y="Number of crimes") + scale_color_discrete(name= "Crime Type")
+
+ggsave("Crimes_over_years.png", width=4, height=4, dpi=500)
+```
+
+
+```{r}
+annual_averages %>% ggplot(aes(x=year,y=mean,color = crime_type)) + geom_smooth(aes(group = crime_type),se=FALSE) +
+  labs(x="Year",y="Number of crimes")+
+  ggtitle("Average number of crimes per year") +
+  labs(x="Year",y="Number of crimes")+ theme_igray() + scale_colour_tableau() + scale_color_discrete(name= "Crime Type") -> p
+
+ p + theme(axis.text.x  = element_text(angle=90, vjust=0.5, size=10)) 
+
+ggsave("Crimes_per_year.png", width=4, height=4, dpi=500)
+
+```
+
+```{r, echo=FALSE, message=FALSE}
+bihar_crime_long %>% filter(crime_type=="Theft") %>% ggplot(aes(x=month, y= value, color = as.factor(year))) + geom_smooth(aes(group = year),se=FALSE,position=position_dodge(width=0.2)) + 
+  ggtitle("Thefts by month of the year") +
+  labs(x="Month of the year",y="Number of thefts")+ scale_color_brewer(name = "Years", labels = c(2010:2016), type = "qual", palette = 3) + theme_bw(base_size = 12, base_family = "Helvetica")+ theme_minimal() + theme_igray() + scale_colour_tableau() + scale_color_discrete(name= "Years")-> p
+
+ p + theme(axis.text.x  = element_text(angle=90, vjust=0.5, size=10)) 
+
+ggsave("Thefts_by_month.png", width=4, height=4, dpi=500)
+
+suppressWarnings(print(p))
+```
+
+```{r, echo=FALSE, message=FALSE}
+bihar_crime_long %>% filter(crime_type=="Theft" & year >= 2013 & month >= "Apr") %>% ggplot(aes(x=month, y=value,fill=as.factor(year))) + geom_bar(stat='identity', width=0.5, position=position_dodge(0.5)) + 
+  ggtitle("Thefts by month of the year \n 2013 - 2016") +
+  labs(x="Month of the year",y="Number of thefts") + scale_color_brewer(name = "Years", labels = c(2013:2016), type = "qual", palette = 2) + theme_bw(base_size = 12, base_family = "Helvetica")+ theme_minimal() + scale_fill_discrete(name="Years") + theme_igray() + scale_colour_tableau() -> p
+
+ p + theme(axis.text.x  = element_text(angle=90, vjust=0.5, size=10)) 
+
+ggsave("Thefts_by_month_2013_16_bar.png", width=4, height=4, dpi=500)
+
+suppressWarnings(print(p))
+```
+
+```{r}
+bihar_crime_long %>% filter(crime_type=="Riots") %>% ggplot(aes(x=month, y= value, color = as.factor(year))) + geom_smooth(aes(group = year),se=FALSE)  + ggtitle("Riots by month of the year") + labs(x="Month of the year",y="Number of riots")+ scale_color_brewer(name = "Years", labels = c(2010:2016), type = "qual", palette = 3) + theme_bw(base_size = 12, base_family = "Helvetica")+ theme_minimal()-> p
+
+ p + theme(axis.text.x  = element_text(angle=90, vjust=0.5, size=10)) 
+
+ggsave("Riots_by_month.png", width=4, height=4, dpi=500)
+suppressWarnings(print(p))
+```
+```{r, echo=FALSE, message=FALSE}
+bihar_crime_long %>% filter(crime_type=="Riots" & year >= 2013 & month >= "Apr") %>% ggplot(aes(x=month, y=value,fill=as.factor(year))) + geom_bar(stat='identity', width=0.5, position=position_dodge(0.5)) + 
+  ggtitle("Riots by month of the year \n 2013 - 2016") +
+  labs(x="Month of the year",y="Number of riots") + scale_color_brewer(name = "Years", labels = c(2013:2016), type = "qual", palette = 2) + theme_bw(base_size = 12, base_family = "Helvetica")+ theme_minimal() + scale_fill_discrete(name="Years") + theme_igray() + scale_colour_tableau()-> p
+
+ p + theme(axis.text.x  = element_text(angle=90, vjust=0.5, size=10)) 
+
+ggsave("Riots_by_month_2013_16_bar.png", width=4, height=4, dpi=500)
+
+suppressWarnings(print(p))
+```
+
+```{r}
+bihar_crime_long %>% filter(crime_type=="Kidnapping") %>% ggplot(aes(x=month, y= value, color = as.factor(year))) + geom_smooth(aes(group = year),se=FALSE,position=position_dodge(width=0.2))   + 
+  ggtitle("Kidnappings by month of the year") +
+  labs(x="Month of the year",y="Number of kidnappings")+ scale_color_brewer(name = "Years", labels = c(2010:2016), type = "qual", palette = 3) + theme_bw(base_size = 12, base_family = "Helvetica")+ theme_minimal() -> p
+
+ p + theme(axis.text.x  = element_text(angle=90, vjust=0.5, size=10)) 
+
+ggsave("Kidnappings_by_month.png", width=4, height=4, dpi=500)
+suppressWarnings(print(p))
+```
+```{r, echo=FALSE, message=FALSE}
+bihar_crime_long %>% filter(crime_type=="Kidnapping" & year >= 2013 & month >= "Apr") %>% ggplot(aes(x=month, y=value,fill=as.factor(year))) + geom_bar(stat='identity', width=0.5, position=position_dodge(0.5)) + 
+  ggtitle("Kidnappings by month of the year \n 2013 - 2016") +
+  labs(x="Month of the year",y="Number of Kidnappings") + scale_color_brewer(name = "Years", labels = c(2013:2016), type = "qual", palette = 2) + theme_bw(base_size = 12, base_family = "Helvetica")+ theme_minimal() + scale_fill_discrete(name="Years") + theme_igray() + scale_colour_tableau()-> p
+
+ p + theme(axis.text.x  = element_text(angle=90, vjust=0.5, size=10)) 
+
+ggsave("Kidnappings_by_month_2013_16_bar.png", width=4, height=4, dpi=500)
+
+suppressWarnings(print(p))
+```
+```{r}
+bihar_crime_long %>% filter(crime_type=="Burglary") %>% ggplot(aes(x=month, y= value, color = as.factor(year))) + geom_smooth(aes(group = year),se=FALSE,position=position_dodge(width=0.2)) +
+  ggtitle("Burglaries by month of the year") +
+  labs(x="Month of the year",y="Number of crimes")+ scale_color_brewer(name = "Years", labels = c(2010:2016), type = "qual", palette = 3) + theme_bw(base_size = 12, base_family = "Helvetica")+ theme_minimal() -> p
+
+ p + theme(axis.text.x  = element_text(angle=90, vjust=0.5, size=10)) 
+
+ggsave("Burglaries_by_month.png", width=4, height=4, dpi=500)
+
+suppressWarnings(print(p))
+```
+
+```{r, echo=FALSE, message=FALSE}
+bihar_crime_long %>% filter(crime_type=="Burglary" & year >= 2013 & month >= "Apr") %>% ggplot(aes(x=month, y=value,fill=as.factor(year))) + geom_bar(stat='identity', width=0.5, position=position_dodge(0.5)) + 
+  ggtitle("Burglaries by month of the year \n 2013 - 2016") +
+  labs(x="Month of the year",y="Number of Burglaries") + scale_color_brewer(name = "Years", labels = c(2013:2016), type = "qual", palette = 2) + theme_bw(base_size = 12, base_family = "Helvetica")+ theme_minimal() + scale_fill_discrete(name="Years")+ theme_igray() + scale_colour_tableau()  -> p
+
+ p + theme(axis.text.x  = element_text(angle=90, vjust=0.5, size=10)) 
+
+ggsave("Burglaries_by_month_2013_16_bar.png", width=4, height=4, dpi=500)
+
+suppressWarnings(print(p))
+```
+
+```{r}
+bihar_crime_total <- bihar_crime_long %>% group_by(year,month) %>% summarise(monthly_total=sum(value))
+```
+```{r}
+bihar_crime_total  %>% ggplot(aes(x=month, y= monthly_total, color = as.factor(year))) +
+ geom_smooth(aes(group = year),se=FALSE,position=position_dodge(width=0.2)) +
+  ggtitle("Total crimes by month of the year") +
+  labs(x="Month of the year",y="Number of crimes")+ scale_color_brewer(name = "Years", labels = c(2010:2016), type = "qual", palette = 3) + theme_bw(base_size = 12, base_family = "Helvetica")+ theme_minimal() -> p
+
+ p + theme(axis.text.x  = element_text(angle=90, vjust=0.5, size=10)) 
+
+ggsave("Crimes_by_month.png", width=4, height=4, dpi=500)
+
+suppressWarnings(print(p))
+```
+```{r}
+bihar_crime_total %>% filter(year >= 2013 & month >= "Apr") %>% ggplot(aes(x=month, y=monthly_total,fill=as.factor(year))) + geom_bar(stat='identity', width=0.5, position=position_dodge(0.5)) +  
+  ggtitle("Total crimes by month of the year \n 2013 - 2016") +
+  labs(x="Month of the year",y="Number of crimes")+ scale_color_brewer(name = "Years", labels = c(2010:2016), type = "qual", palette = 3) + theme_bw(base_size = 12, base_family = "Helvetica")+ theme_minimal() + scale_fill_discrete(name="Years") + theme_igray() + scale_colour_tableau() -> p
+
+ p + theme(axis.text.x  = element_text(angle=90, vjust=0.5, size=10)) 
+
+ggsave("Total_Crimes_by_month_2013_16_bar.png", width=4, height=4, dpi=500)
+
+suppressWarnings(print(p))
+```
+```{r}
+bihar_crime_total %>% filter(year <= 2015) %>%  ggplot(aes(x=month, y=monthly_total)) + geom_boxplot()  +  ggtitle("Total crimes by month of the year \n 2010-2015") +
+  labs(x="Month of the year",y="Number of crimes")+ scale_color_brewer(name = "Years", labels = c(2010:2016), type = "qual", palette = 3) + theme_bw(base_size = 8, base_family = "Helvetica")+ theme_minimal() + scale_fill_discrete(name="Years") + theme_igray() -> p
+
+ p + theme(axis.text.x  = element_text(angle=90, vjust=0.5, size=10)) 
+
+ggsave("Total_Crimes_by_month_2010_15_box.png", width=4, height=4, dpi=500)
+
+suppressWarnings(print(p))
+
+# geom_bar(stat='identity', width=0.7, position=position_dodge(0.5))
+```
