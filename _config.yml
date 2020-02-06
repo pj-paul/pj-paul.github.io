@@ -39,6 +39,8 @@ minima:
     #   instance: example.com
 
 # Enable Disqus
+comments:
+  provider: "disqus"
   disqus:
     shortname: "https-pjpaul-info"
 
