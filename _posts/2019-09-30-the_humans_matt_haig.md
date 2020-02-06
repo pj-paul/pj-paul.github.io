@@ -4,6 +4,7 @@ layout: single
 excerpt: "The Humans feels a bit too pat and convenient. "
 tags: life book-review
 category: books
+comments: true 
 ---
 
 ![The Humans](/docs/images/The_Humans_Cover.jpg){: .align-center}
