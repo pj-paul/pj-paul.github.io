@@ -7,7 +7,7 @@ category: books
 comments: true 
 ---
 
-![The Humans](/docs/images/The_Humans_Cover.jpg){: .align-center}
+![The Humans](../docs/images/The_Humans_Cover.jpg){: .align-center}
 
 
 ## Plot Summary
