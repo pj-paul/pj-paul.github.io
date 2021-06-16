@@ -52,6 +52,7 @@ comments:
 header_pages:
 - about.md
 - Books.html
+- fintech.html
 
 # Build settings
 theme: minima
