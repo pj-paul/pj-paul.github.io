@@ -1,0 +1,14 @@
+---
+layout: page
+title: 'Fin/Tech'
+permalink: /fintech/
+---
+
+<div class="toc">
+  <h2> </h2>
+  <ul class="texts">
+{% for post in site.categories.fintech %}
+    <li><a href="{{ post.url | prepend:site.baseurl }}">{{ post.title }}</a> &nbsp; {{ post.date | date_to_string }}</li>
+{% endfor %}
+</ul>
+</div>
