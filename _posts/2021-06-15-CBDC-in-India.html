@@ -1,0 +1,269 @@
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org32b0bad">Summary</a></li>
+<li><a href="#orgb857d0d">What's this CBDC I keep hearing about?</a></li>
+<li><a href="#org3d5a578">And can I 'do' crypto and block-chain with a CBDC?</a></li>
+<li><a href="#org27c0bac">Hold on. This CBDC doesn't sound like such a big deal&#x2026;?</a></li>
+<li><a href="#org12c5449">Is India planning to launch a CBDC of its own?</a></li>
+<li><a href="#org2038d22">What will India's CBDC look like?  Will it be any good?</a></li>
+<li><a href="#orgb9cd0c2">So&#x2026; should India even build a CBDC then?</a>
+<ul>
+<li><a href="#org5329021">1. Banks regard infrastructural innovations as thankless affairs</a></li>
+<li><a href="#org0982601">2. Bank APIs lack standardization, which limits efforts to aggregate various bank offerings</a></li>
+<li><a href="#orgccfc08f">A solution inspired by Ethereum</a></li>
+<li><a href="#orgca1521c">Solving the monetization problem for infrastructure innovation</a></li>
+<li><a href="#org9cb2b99">Solving the lack of standardized specs for financial products</a></li>
+</ul>
+</li>
+<li><a href="#orge4a03ce">What's next for CBDCs, in India and globally?</a></li>
+</ul>
+</div>
+</div>
+---
+layout: single
+title: The RBI's CBDC Proposal: A solution in search of a problem
+category: fintech
+tags: 
+excerpt: 
+comments: true
+---
+
+<div id="outline-container-org32b0bad" class="outline-2">
+<h2 id="org32b0bad">Summary</h2>
+<div class="outline-text-2" id="text-org32b0bad">
+<p>
+The Reserve Bank of India (RBI) has been exploring Rupee versions of Central Bank Digital Currencies in India. A close examination reveals that CBDCs are poor alternatives to commercial bank deposits in the Indian context. The logistical challenges involved in deploying a mass-market substitute for commercial bank deposits guarantee the failure of such attempts. Further, a CBDC alternative to commercial bank deposits does not solve a pressing customer need. Routine payments and other operations are cheap and fast in India, and Indian banks are generally stable without major episodes of default. 
+Instead, the RBI's vision for CBDCs must be to develop a compute-layer similar to Ethereum, combined with robust and comprehensive frameworks for governance and digital consent norms. 
+</p>
+</div>
+</div>
+<div id="outline-container-orgb857d0d" class="outline-2">
+<h2 id="orgb857d0d">What's this CBDC I keep hearing about?</h2>
+<div class="outline-text-2" id="text-orgb857d0d">
+<p>
+Simply put, a Central Bank Digital Currency (CBDC) is a deposit you maintain with the Central Bank of your country. As such it is nearly identical to a deposit you male make at any other private commercial bank in your country. Similar to how you can use your balance with a commercial bank to buy dinner or stocks, you will be able to use CBDCs to perform these same functions. For instance, coffee-shops in Beijing were among the first merchants where China's digital yuan was launched.<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup> Just like how your deposits with private banks earn you interest, your Central Bank may also decide to pay interest on the balance you keep with them.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org3d5a578" class="outline-2">
+<h2 id="org3d5a578">And can I 'do' crypto and block-chain with a CBDC?</h2>
+<div class="outline-text-2" id="text-org3d5a578">
+<p>
+A block-chain is but one way to keep track of all the transactions and updates happening to the balances you keep with a bank. Generally most banks use a centralized database with secured access to keep track of all transactions. Cryptocurrencies use a distributed database called the block-chain for this purpose; updates to this database are made via consensus of the peers on the distribution network. 
+Whether a CBDC must also use a block-chain implementation is entirely up to the bank issuing it. To drive this point home, even now, there's nothing stopping a private bank in your country, from offering a crypto-currency token against the deposits you make in that bank, a Private Bank Digital Currency if you may. :wink:
+</p>
+</div>
+</div>
+
+<div id="outline-container-org27c0bac" class="outline-2">
+<h2 id="org27c0bac">Hold on. This CBDC doesn't sound like such a big deal&#x2026;?</h2>
+<div class="outline-text-2" id="text-org27c0bac">
+<p>
+As you may suspect, a lot of it is indeed hype. At its core, CBDCs are completely analogous to commercial bank reserves for most domestic transactions. As long as country's payments infrastructure is cost and time efficient, a CBDC alternative to commercial bank reserves will be redundant.
+</p>
+
+<p>
+However, CBDCs may offer an new opportunity for fintech innovation in countries with broken fintech infrastructure.
+</p>
+
+<p>
+However, one critical advantage of CBDCs is the protection it offers against your bank going under, resulting in you losing all your deposits. While this is a remote possibility in India (thanks to the extremely tight regulatory oversight of the RBI), in the USA for instance, about 4 banks go under every year on average typing up assets of close to $160 Million (about 1/10th the size of deposits held up in PMC Bank).<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup> CBDCs protect you from this risk, almost by definition —— since all money in an economy are simply IoUs issued by a Central Bank, Central Banks, by design, cannot run out of IoUs to issue, leading to zero risk of default on CBDCs.
+</p>
+
+<p>
+But in countries with broken financial infrastructure, particularly international payments, CBDCs may add significant value. For instance, P2P transfers in the USA are extremely expensive and inefficient. Wire transfers (the equivalent of India's RTGS) may cost the sender and the recipient upwards of $30. Other modes of fund transfers (such as the ACH used for payroll and vendor payments) may take up to a week to clear and settle. CBDCs can offer a work-around by removing multiple stakeholders involved in an inter-bank transfer, potentially leading to savings in time and cost. A similar logic applies for international transfers, where removing intermediaries could make FX transactions faster and cheaper.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org12c5449" class="outline-2">
+<h2 id="org12c5449">Is India planning to launch a CBDC of its own?</h2>
+<div class="outline-text-2" id="text-org12c5449">
+<p>
+Yes, India is planning to develop a CBDC. The RBI has made some noises in this direction. In March, 2021, Governor Das mentioned that the RBI was working on developing an Indian CBDC while evaluating the financial stability implications alongside. This would suggest that 
+</p>
+
+<p>
+We can only speculate about what's on RBI's mind at this point. Definitive statements or even a vague outline of what a Rupee CBDC might look like are still absent.
+</p>
+
+<p>
+India is following the suit of several large central banks around the world
+</p>
+
+<p>
+It seems that Central Banks around the world are a bit spooked by the rise of crypto-currencies, particularly centrally coordinated currencies like Facebook's Libra; and the recent chatter about CBDCs is a response to this threat.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org2038d22" class="outline-2">
+<h2 id="org2038d22">What will India's CBDC look like?  Will it be any good?</h2>
+<div class="outline-text-2" id="text-org2038d22">
+<p>
+Official specifications for the CBDC have not been released yet. So, we can only make reasoned speculation based on other information shared by the RBI. Based on the content of recent speeches and documents shared by the RBI, India's CBDC seems to be headed straight down the path of being a commercial bank reserve clone.
+</p>
+
+<p>
+Governor Das' comments about the work happening on CBDC, along with his emphasis on 'financial stability implications' of such a product, suggests a CBDC that is at least a partial clone of commercial bank deposits. 
+</p>
+
+<p>
+For instance here are comments Governor Das' made in March, 2021: <sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup>
+</p>
+
+<blockquote>
+<p>
+While doing all these, we need to be watchful of the risks associated with certain technological innovations. That being said, while we are working on introducing a digital version of the fiat currency, the Reserve Bank is also assessing the financial stability implications of introducing such a Central Bank Digital Currency (CBDC).
+</p>
+</blockquote>
+
+<p>
+Before this, the annual Report on Currency and Finance (RCF, 2021) published by the RBI in February, 2021, evaluated CBDCs as 'not an unmixed blessing' ('a mixed blessing', parsing out the double negatives), specifically highlighting the potential for disintermediation of commercial banks, and mitigation options for the same, even going as far to suggest a penalty on excess CBDC reserves. <sup><a id="fnr.4" class="footref" href="#fn.4">4</a></sup>
+</p>
+
+<blockquote>
+<p>
+CBDC is, however, not an unmixed blessing – it poses a risk of disintermediation of the banking system, more so if the commercial banking system is perceived to be fragile. The public can convert their CASA deposits with banks into CBDC, thereby raising the cost of bank-based financial intermediation with implications for growth and financial stability. In countries with significant credit markets, commercial banks may lose their primacy as the major conduit of monetary policy transmission. One recently proposed solution to limit disintermediation is the introduction of a 2-tier remuneration system for CBDCs, whereby [&#x2026;] CBDC balances of the individual over and above the ceiling are subject to a penal negative interest rate (Bindseil and Pannetta, 2020). CBDCs providing anonymity may also have implications for cross border payments in violation of extant acts; appropriate safeguards against AML/CFT would need to be laid down.
+</p>
+</blockquote>
+
+<p>
+All of this gives us cause to conclude that RBI's CBDC would effectively be a clone of private bank deposits with a cyrptographic implementation similar to block-chain.
+</p>
+
+<p>
+This would be a terrible mistake to say the least. If RBI's CBDC is a mere cryptographic clone of a routine private bank deposit focused on payment-related use cases, it will inevitably end up in failure.
+</p>
+
+<p>
+For starters, it's hard to identify a pressing customer need that such a CBDC can solve. Payment systems in India are extremely cost and time efficient. Real-time wire payments and mobile-based P2P payments are all free for retail customers. RBI regulations have also compressed interchange margins on commonly used card products. Near real-time settlements are the norm in India, and the only entities charging non-trivial margins on payments are money-transfer firms (such as Western Union, PayNearbuy etc). The concept of a closed-loop wallet operator (similar to Venmo, for instance) charging 1% for users to withdraw their funds would be unthinkable in Indiain India.
+</p>
+
+<p>
+As if that wasn't enough, the logistical and organization efforts involved in integrating such a CBDC into India's existing payment and settlement systems will be a nightmare for RBI. India's payments systems are wide-ranging covering everything from ATMs, NEFT/RTGS/IMPS, along with various NPCI offerings. And, unless RBI wants its Twitter feed and telephone helplines to drown with complaints about cash-backs and double-debits, and unless they are happy to open and service thousands of branches all over the country, a cloned CBDC shouldn't even be considered by the RBI. Indian bank customers are extremely reliant on in-person servicing, as multiple years of bench-marking have highlighted. Futher, as anyone who has handled customer satisfaction can attest, Indian customers are notoriously averse to reading help documentations, and will accept nothing short of near-immediate telephonic support. Although the RBI could in theory outsource the onboarding and servicing of customers to existing commercial banks, it's unclear how enthusiastic these banks would be about cannibalizing their base of low-cost deposit customers.
+</p>
+
+<p>
+As we saw earlier, unless a country's payment systems are terribly broken, or it's banks are carrying a high risk of default, commercial/private bank reserves are more than enough to meet most requirements. For once, the CBDC at home is better than the one in the store.
+</p>
+
+<p>
+The example use cases highlighted by RBI in the Report on Currenacy and Finance, 2021 alone make it clear that a CBDC is unnecessary. Consider the following list:
+</p>
+<blockquote>
+<p>
+CBDCs can [&#x2026;] promote financial inclusion by direct benefit fiscal transfer, pumping central bank ‘helicopter money’ and even direct public consumption to a select basket of goods and services to increase aggregate demand and social welfare&#x2026;.
+</p>
+</blockquote>
+<p>
+All of the items listed above can be achieved via commercial bank reserves. In fact, only a few weeks ago, NPCI shared updates on a UPI-based e-Voucher that can only be used at permitted merchant categories. Corporate debit card have had built-in merchant white-listing for years now. CBDCs in the avatar of a commercial reserve substitute are effectively solutions seeking problems.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb9cd0c2" class="outline-2">
+<h2 id="orgb9cd0c2">So&#x2026; should India even build a CBDC then?</h2>
+<div class="outline-text-2" id="text-orgb9cd0c2">
+<p>
+India should absolutely build a CBDC. But such a project should aim to solve a pressing systemic problem, instead of being a redundant clone of commercial bank deposits. And the biggest systemic problems in Indian fintech are two-fold:
+</p>
+</div>
+
+<div id="outline-container-org5329021" class="outline-3">
+<h3 id="org5329021">1. Banks regard infrastructural innovations as thankless affairs</h3>
+<div class="outline-text-3" id="text-org5329021">
+<p>
+Indian banks are rightly averse to further investments in infrastructure products such as payments. The expansion of digital payments in India over the past half-decade was subsidized in part by the member banks by operating the network at zero cost for customer and merchants. The card interchange policy followed by the Government of India echoes the same story of banks subsidizing customers and merchants. Bank transfer rails, such as IMPS, NEFT, and RTGS, have only charged nominal costs to users since inception.
+</p>
+
+<p>
+Banks rightfully consider innovation at the infrastructure layer to be a thankless affair. This stance is visible in their lukewarm response towards implementing UPI's 2.0 specifications (implementation by most banks is pending for close to a year) as well as the Account Aggregator specifications. Asking them to bear the burden of CBDCs would be a step too far.
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-org0982601" class="outline-3">
+<h3 id="org0982601">2. Bank APIs lack standardization, which limits efforts to aggregate various bank offerings</h3>
+<div class="outline-text-3" id="text-org0982601">
+<p>
+One of the key challenges in developing fintech products in partnership with Indian banks is the sheer scale of idiosyncratic variation in the APIs and lower-level interfaces of each bank. No two banks seem to have the same schema or object model for accounts and customers. These technical deviations raise the difficulty of creating products that work across banks. Consider a fintech building a bank statement reconciliation tool that plugs into the Statement APIs (assuming generously that they exist) of their users' banks. The technical effort involved in first accessing and then supporting the divergent specifications of banks is enough to kill a young startup. Given that all financial products in India are designed following guidelines of the RBI, it is certainty possible for the discrete steps/ API calls involved in the digital creation of a financial product to be standardized. 
+</p>
+
+<p>
+This lack of standardization also blocks the emergence of the next generation of aggregated products &#x2013; including aggregated Term Deposits, and Personal Loans &#x2013; meant to build on top of the first generation innovation in payments and collections. 
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgccfc08f" class="outline-3">
+<h3 id="orgccfc08f">A solution inspired by Ethereum</h3>
+<div class="outline-text-3" id="text-orgccfc08f">
+<p>
+A CBDC designed inspired by the Ethereum block-chain with enhanced primitives to create other basic financial products such as Term Deposits and Unsecured Loans could help address these problems. This Ethereum-Plus CBDC could be operated entirely by the RBI with minimal involvement and support from private banks. Customers could be allowed to make deposits into CBDCs from their bank's mobile banking or net-banking applications. RBI could then expose an Ethereum-like virtual machine together with out-of-the-box primitives such as Accounts and Transactions (similar to the primitives available on Ethereum) and smart-contract capabilities defined on top of customer deposits. Enhanced primitives (examples include primitives to complete KYC verification, primitives to collect generic key-value pairs) to enable the composition of other financial products such as Term Deposits, and Unsecured Loans completed the product. <sup><a id="fnr.5" class="footref" href="#fn.5">5</a></sup>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgca1521c" class="outline-3">
+<h3 id="orgca1521c">Solving the monetization problem for infrastructure innovation</h3>
+<div class="outline-text-3" id="text-orgca1521c">
+<p>
+A Two-track approach for monetizing infrastructural innovation: The classic Account and Transaction primitives available on the Ethereum-Plus CBDC combined with smart-contract capabilities provide enough support for the next generation of innovation in payments. In order to ensure that banks are able to capture the benefits accruing from such innovations, access to these CBDC rails maybe restricted to fintechs who have entered profit-sharing/ partnership agreements with legacy bank partners. Further, banks and fintechs maybe provided a free reign in pricing and operating innovative products developed on these CBDC rails. This completes the creation of a two-track approach to monetizing infrastructural products, where the basic products (such as UPI and bank/ wire transfer products) continue to be priced nominally, but further innovations capture sufficient value for sponsoring banks. 
+</p>
+</div>
+</div>
+
+<div id="outline-container-org9cb2b99" class="outline-3">
+<h3 id="org9cb2b99">Solving the lack of standardized specs for financial products</h3>
+<div class="outline-text-3" id="text-org9cb2b99">
+<p>
+Convergence to standardized technical specifications for product primitives: The 'Plus' part of the proposed Ethereum-Plus CBDC denotes the enhanced primitives available to perform a variety of tasks such as performing customer KYC, and sharing standardized personal/ nominee information or underwriting information. The long term goal here is to get banks to implement standardized specifications and APIs for core financial products. While initially, the Enhanced primitives provided by the CBDC would not be connected to the Core Banking Systems of member banks, over time member banks maybe nudged to confirm to the new standardized specifications. Compared to previous asks from banks involving subsidizing years' worth of operational costs, such standardization is a rather routine affair, with the potential to provide immediate gains. As in the case of UPI, India's public sector banks maybe called on to lead by example.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge4a03ce" class="outline-2">
+<h2 id="orge4a03ce">What's next for CBDCs, in India and globally?</h2>
+<div class="outline-text-2" id="text-orge4a03ce">
+<p>
+In India: In India, RBI seems to be heading down the path of developing CBDCs that are close substitutes for commercial bank reserves. So far there has been no hints that the RBI is thinking of enabling smart-contract features through an Ethereum-like virtual machine. We can expect the RBI to share preliminary specifications inviting comments in about 6-9 months. 
+</p>
+
+<p>
+Globally: Nigeria and China seem to be leading the pack. The USA seems to be sitting out the CBDC race for now. Even though China has completed the testing of their Digital Yuan, details of 
+</p>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+<a href="https://www.ledgerinsights.com/digital-yuan-beijing-shanghai/">https://www.ledgerinsights.com/digital-yuan-beijing-shanghai/</a>
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">
+<a href="https://www.fdic.gov/bank/historical/bank/">https://www.fdic.gov/bank/historical/bank/</a>
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3">3</a></sup> <div class="footpara"><p class="footpara">
+Financial Sector in the New Decade (Address by Shri Shaktikanta Das, Governor, Reserve Bank of India - Thursday, March 25, 2021 - at the Times Network India Economic Conclave 2021 in New Delhi) <a href="https://www.rbi.org.in/Scripts/BS_SpeechesView.aspx?Id=1106">Link to Transcript</a>
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.4" class="footnum" href="#fnr.4">4</a></sup> <div class="footpara"><p class="footpara">
+<a href="https://rbi.org.in/Scripts/AnnualPublications.aspx?head=Report%20on%20Currency%20and%20Finance">RBI's Report on Currency and Finance, February, 2021</a>
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.5" class="footnum" href="#fnr.5">5</a></sup> <div class="footpara"><p class="footpara">
+This section is slightly jargon heavy. Ethereum's <a href="https://ethereum.org/en/whitepaper/">Whitepaper</a> explains these concepts in greater detail. 
+</p></div></div>
+
+
+</div>
+</div>
