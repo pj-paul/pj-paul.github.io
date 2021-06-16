@@ -46,3 +46,19 @@ figcaption {
  * Better footnotes
  */
 
+#text-footnotes {
+    display: table;
+    border-collapse: separate;
+    border-spacing: 0 0.314em;
+}
+
+.footpara {
+    padding-left: 0.2em;
+    float: inline-start;
+    display: table-cell;
+}
+
+.footdef {
+    width: inherit;
+    display: table-row;
+}
