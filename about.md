@@ -4,8 +4,10 @@ title: About
 permalink: /about/
 ---
 
-Hi there,
+<img class="profile-picture" src="{{site.baseurl}}/{{site.profile-picture}}">
 
-My name is Paul Pathikulangara. I'm an MBA student at the Tuck School of Business, Dartmouth College.
+My name is Paul Pathikulangara. I'm an MBA student at the Tuck School of Business, Dartmouth College, excited about opportunities in fintech and finance.
 
-I'm recruiting for Finance and Fintech. Previously I worked at Setu, a fintech firm where I lead a team which built India's first Term Deposit APIs.
+Previously I worked at Setu, a fintech firm out of Bangalore, where I lead a team to build India's first aggregated Term Deposit APIs.
+
+I spend most of my days reading, writing, or lifting. Some of what I read and write find their way here.
